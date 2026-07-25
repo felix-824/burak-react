@@ -13,7 +13,7 @@ import { createSelector } from "reselect";
 import { retrieveNewDishes } from "./selector";
 import { Product } from "../../../lib/types/product";
 import { serverApi } from "../../../lib/config";
-import { Productcollection } from "../../../lib/enums/product.enum";
+import { ProductCollection } from "../../../lib/enums/product.enum";
 
 /** REDUX SLICE & SELECTOR **/
 const  newDishesRetrieve = createSelector(
@@ -36,7 +36,7 @@ export default function NewDishes() {
               {newDishes.length !== 0 ? (
                 newDishes.map((product: Product) => {
                    const imagePath = `${serverApi}/${product.productImages[0]}`;
-                   const sizeVolume = product.Productcollection === Productcollection.DRINK
+                   const sizeVolume = product.productCollection === ProductCollection.DRINK
                     ? product.ProductVolume + "l"
                      : product.ProductSize + "size";
                   return (

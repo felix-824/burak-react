@@ -10,7 +10,7 @@ import { Dispatch } from "@reduxjs/toolkit";
 import { setNewDishes, setPopularDishes, setTopUsers } from "./slice";
 import { Product } from "../../../lib/types/product";
 import ProductService from "../../services/ProductService";
-import { Productcollection } from "../../../lib/enums/product.enum";
+import { ProductCollection  } from "../../../lib/enums/product.enum";
 import "../../../css/home.css";
 import { Member } from "../../../lib/types/member";
 import MemberService from "../../services/MemberService";
@@ -46,7 +46,7 @@ export default function HomePage() {
         page: 1,
         limit: 4,
         order: "createdAt",
-        productCollection: Productcollection.DISH,
+        productCollection:  ProductCollection.DISH,
       })
       .then((data) => {setNewDishes(data);
       })
