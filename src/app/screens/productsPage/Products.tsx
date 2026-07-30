@@ -38,7 +38,7 @@ export default function Products(props: ProductsProps) {
   const { setProducts } = actionDispatch(useDispatch());
   const { products } = useSelector(productsRetriever);
   const [productSearch, setProductSearch] = useState<ProductInquiry>({
-      page: 1,
+        page: 1,
         limit: 8,
         order: "createdAt",
         productCollection: ProductCollection.DISH,
@@ -48,10 +48,14 @@ export default function Products(props: ProductsProps) {
   const history = useHistory();
 
   useEffect(() => {
+    // 1-JARAYON: CompoentDidMount
+
    const product = new ProductService();
+   // 2-JARAYON: Backend Data Fetch (Malumotni olib kelish)
    product
        .getProducts (productSearch)
-       .then((data) => setProducts(data))
+       .then((data) => // Backendan Data kelyabdi
+        setProducts(data))  // 3-Jarayon: DATA SLICE ga joylanadi
        .catch((err) => console.log(err));
   }, [productSearch]);
 
@@ -61,13 +65,15 @@ export default function Products(props: ProductsProps) {
       setProductSearch({ ...productSearch });
     }
   }, [searchText]);
-  
+
+  // 3-JARAYON2: SELECTORDAN DATAni Oladi
+
   /** HANDLERS **/
 
   const searchCollectionHandler = (collection: ProductCollection) => {
-   productSearch.page = 1;
-   productSearch.productCollection = collection;
-   setProductSearch({...productSearch });
+   //productSearch.page = 1;
+  // productSearch.productCollection = collection;
+   setProductSearch({...productSearch, page: 1, productCollection: collection });  
   };
 
   const searchOrderHandler = (order: string) => {
