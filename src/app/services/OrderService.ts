@@ -51,7 +51,7 @@ class OrderService {
 
     public async updateOrder(input: OrderUpdateInput): Promise<Order> {
     try {
-      const url = `&{this.path}/order/update`;
+      const url = `${this.path}/order/update`;
       const result = await axios.post(url, input, { withCredentials: true});
       console.log("updateOrder:", result);
 
